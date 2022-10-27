@@ -8,7 +8,7 @@ public class Pilha {
 
     public void push(Livro livro){
         if (pilhaLivros.size() >= limite)
-            return;
+            throw new ArrayStoreException("Não é possível adicionar mais livros!");
 
         if (!livro.getTitulo().toUpperCase().startsWith("A") && !livro.getTitulo().toUpperCase().startsWith("O"))
             return;

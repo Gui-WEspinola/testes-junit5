@@ -76,13 +76,26 @@ class PilhaTest {
 
     @Test
     @DisplayName("Não adiciona além do limite")
-    void testNaoAdicionaAlemDoLimite(){
-        pilha.push(new Livro("O Game of Thrones"));
-        pilha.push(new Livro("A livraria"));
+    void testNaoAdicionaAlemDoLimite() {
+        Livro livro1 = new Livro("O Game of Thrones");
+        pilha.push(livro1);
+        Livro livro2 = new Livro("A livraria");
+        try {
+            pilha.push(livro2);
+            fail();
+        } catch (ArrayStoreException ignored) {
+            assertTrue(true);
+        }
+    }
 
-        assertAll(() -> assertEquals(5, pilha.count()),
-                () -> assertEquals("O Game of Thrones", pilha.getLivro().getTitulo())
-        );
+
+    @Test
+    @DisplayName("Não adiciona além do limite")
+    void testNaoAdicionaAlemDoLimiteException() {
+        pilha.push(new Livro("O Game of Thrones"));
+        Livro livro = new Livro("A livraria");
+
+        assertThrows(ArrayStoreException.class, () -> pilha.push(livro));
     }
 
     @Test
