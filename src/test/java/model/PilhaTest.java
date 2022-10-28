@@ -3,6 +3,7 @@ package model;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestMethodOrder(MethodOrderer.DisplayName.class)
 class PilhaTest {
 
     private static Pilha pilha;
@@ -83,14 +84,14 @@ class PilhaTest {
         try {
             pilha.push(livro2);
             fail();
-        } catch (ArrayStoreException ignored) {
+        } catch (ArrayStoreException e) {
             assertTrue(true);
         }
     }
 
 
     @Test
-    @DisplayName("Não adiciona além do limite")
+    @DisplayName("Não adiciona além do limite assertThrows")
     void testNaoAdicionaAlemDoLimiteException() {
         pilha.push(new Livro("O Game of Thrones"));
         Livro livro = new Livro("A livraria");
